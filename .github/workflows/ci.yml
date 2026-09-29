@@ -1,0 +1,16 @@
+name: macOS build and tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Physics and MIDI tests
+        run: bash scripts/test.sh
+      - name: Build Apple Silicon app
+        run: bash scripts/build-app.sh
