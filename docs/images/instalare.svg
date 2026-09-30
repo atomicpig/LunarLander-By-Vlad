@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
 <rect width="1100" height="260" rx="18" fill="#071019"/>
 <g font-family="Helvetica,Arial,sans-serif" fill="#e6efe8">
-<text x="32" y="40" font-size="20" font-weight="bold">LUNAR LANDER · VLAD / INSTALARE</text>
+<text x="32" y="40" font-size="20" font-weight="bold">LUNARLANDER BY VLAD / INSTALARE PE MAC</text>
 <g fill="#101f2b" stroke="#477365"><rect x="30" y="68" width="320" height="162" rx="12"/><rect x="390" y="68" width="320" height="162" rx="12"/><rect x="750" y="68" width="320" height="162" rx="12"/></g>
 <g fill="#9eefc9" font-size="18" font-weight="bold"><text x="50" y="104">1. DESCARCĂ</text><text x="410" y="104">2. TRAGE ÎN APPLICATIONS</text><text x="770" y="104">3. DESCHIDE JOCUL</text></g>
 <g font-size="17"><text x="50" y="145">GitHub → Releases → Assets</text><text x="50" y="180">Alege fișierul .dmg pentru Mac</text><text x="410" y="145">Lunar Lander Vlad.app</text><text x="410" y="180">→ Applications / Aplicații</text><text x="770" y="145">Dacă macOS îl blochează:</text><text x="770" y="178">Privacy &amp; Security</text><text x="770" y="207">→ Open Anyway</text></g>

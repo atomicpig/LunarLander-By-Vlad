@@ -1,4 +1,4 @@
-# Instalare — Lunar Lander · Vlad
+# Instalare pe Mac — LunarLander By Vlad
 
 Ai nevoie de un **Mac cu procesor Apple M1 sau mai nou** și **macOS 13 Ventura sau mai nou**. Verifică în meniul Apple → About This Mac / Despre acest Mac. Nu ai nevoie de Xcode, Terminal, cont sau conexiune la internet după descărcare. Controllerul este opțional.
 
@@ -6,7 +6,10 @@ Ai nevoie de un **Mac cu procesor Apple M1 sau mai nou** și **macOS 13 Ventura 
 
 ## 1. Descarcă aplicația
 
-Deschide **[pagina ultimei versiuni](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/releases/latest)**. În lista **Assets**, alege `Lunar-Lander-Vlad-2.0.0-macOS-arm64.dmg`. Fișierele „Source code” sunt pentru dezvoltatori.
+**[Apasă aici pentru descărcarea directă pe Mac (.DMG)](https://github.com/atomicpig/LunarLander-By-Vlad/releases/latest/download/Lunar-Lander-Vlad-2.0.0-macOS-arm64.dmg)**
+
+
+Deschide **[pagina ultimei versiuni](https://github.com/atomicpig/LunarLander-By-Vlad/releases/latest)**. În lista **Assets**, alege `Lunar-Lander-Vlad-2.0.0-macOS-arm64.dmg`. Fișierele „Source code” sunt pentru dezvoltatori.
 
 Alternativ, descarcă ZIP-ul, deschide-l și mută aplicația rezultată în Applications.
 

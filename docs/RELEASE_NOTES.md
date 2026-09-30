@@ -1,12 +1,12 @@
-# Lunar Lander · Vlad — v2.0.0
+# LunarLander By Vlad — v2.0.0
 
-Înlocuiește complet jocul anterior cu un Lunar Lander nativ, offline, în română. Adresa repository-ului și pagina ultimei versiuni rămân aceleași.
+Înlocuiește complet jocul anterior cu un Lunar Lander nativ, offline, în română. Repository-ul se numește acum LunarLander-By-Vlad; vechea adresă GitHub redirecționează spre acesta.
 
 ## Descarcă și joacă
 
 - **Mac Apple Silicon, macOS 13+**. Alege DMG-ul, deschide-l și trage Lunar Lander Vlad în Applications.
 - ZIP-ul conține aceeași aplicație, fără instalator sau dependențe.
-- [Instalare ilustrată](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/INSTALARE.md).
+- [Instalare ilustrată](https://github.com/atomicpig/LunarLander-By-Vlad/blob/main/docs/INSTALARE.md).
 
 ## Jocul nou
 
@@ -24,4 +24,4 @@
 
 Semnătura este **ad-hoc, fără notarizare Apple**. La prima deschidere poate fi necesar **System Settings → Privacy & Security → Open Anyway**, apoi **Open**. Vezi [instrucțiunile Apple](https://support.apple.com/en-au/102445). Nu este nevoie de Terminal sau de dezactivarea protecțiilor.
 
-Controllerul conectat este detectat, iar mesajele specifice MPK mini IV sunt acoperite de teste. Noua funcție a fiecărui pad nu a fost apăsată fizic de un operator în această verificare; asocierea poate fi verificată sau schimbată din ecranul AKAI. Alte modele/preseturi pot necesita reasociere. Compatibilitatea a fost verificată local pe Apple Silicon; nu a fost testat separat un Mac curat cu fiecare versiune macOS suportată. Detalii în [raportul de verificare](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/VERIFICARE.md).
+Controllerul conectat este detectat, iar mesajele specifice MPK mini IV sunt acoperite de teste. Noua funcție a fiecărui pad nu a fost apăsată fizic de un operator în această verificare; asocierea poate fi verificată sau schimbată din ecranul AKAI. Alte modele/preseturi pot necesita reasociere. Compatibilitatea a fost verificată local pe Apple Silicon; nu a fost testat separat un Mac curat cu fiecare versiune macOS suportată. Detalii în [raportul de verificare](https://github.com/atomicpig/LunarLander-By-Vlad/blob/main/docs/VERIFICARE.md).
