@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This is an offline, Romanian-language Lunar Lander game for Apple Silicon. `Sources/FlightCore/` contains the SI-unit simulation, lunar terrain, landing contact, engine response, MIDI parsing, and controller profiles. Keep this module independent of AppKit, SpriteKit, and CoreMIDI. `Sources/VladLander/` contains SwiftUI screens, SpriteKit rendering, audio, the CoreMIDI adapter, and application state. Core tests live in `Tests/FlightCoreTests/`; application integration tests live in `Tests/LanderTests/`. Packaging scripts belong in `scripts/`, and user guides and screenshots in `docs/`. Generated bundles and archives stay in ignored `dist/`.
+This is an offline, Romanian-language Lunar Lander game for Apple Silicon. `Sources/FlightCore/` contains the SI-unit simulation, lunar terrain, landing contact, engine response, MIDI parsing, and controller profiles. Keep this module independent of AppKit, SpriteKit, and CoreMIDI. `Sources/VladLander/` contains SwiftUI dialogs, AppKit/CoreGraphics rendering, audio, the CoreMIDI adapter, and application state. Core tests live in `Tests/FlightCoreTests/`; application integration tests live in `Tests/LanderTests/`. Packaging scripts belong in `scripts/`, and user guides and screenshots in `docs/`. Generated bundles and archives stay in ignored `dist/`.
 
 ## Build, Test, and Development Commands
 
@@ -20,7 +20,7 @@ Use four-space indentation, `UpperCamelCase` types, and `lowerCamelCase` members
 
 ## Testing Guidelines
 
-Name tests `testBehaviorUnderCondition`. Verify physical invariants, fuel accounting, finite pad pulses, landing limits, swept collisions, profile migration, and input clearing. All three platforms must remain reachable through normal flight controls. Compare trajectories across frame rates; keep telemetry updates separate from simulation steps. There is no coverage percentage requirement. Run tests after behavioral changes and build after UI changes. Record physical hardware checks separately from replayed MIDI tests.
+Name tests `testBehaviorUnderCondition`. Verify physical invariants, fuel accounting, finite pad pulses, landing limits, swept collisions, profile migration, and input clearing. All three platforms must remain reachable through normal flight controls. Compare trajectories across frame rates; keep live readouts out of SwiftUI layout. Verify the clock advances in mouse-tracking mode. There is no coverage percentage requirement. Run tests after behavioral changes and build after UI changes. Record physical hardware checks separately from replayed MIDI tests.
 
 ## Commit & Pull Request Guidelines
 

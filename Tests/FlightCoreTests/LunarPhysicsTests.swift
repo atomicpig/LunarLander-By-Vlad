@@ -47,11 +47,11 @@ final class LunarPhysicsTests:XCTestCase {
         XCTAssertLessThan(w.velocity.x,before.x); XCTAssertGreaterThan(w.velocity.x,0)
         XCTAssertLessThan(w.fuel,250)
     }
-    func testSmallChangesRespondImmediatelyAndBigChangesRamp() {
+    func testAllEngineChangesApplyOnTheNextStepWithoutSpoolDelay() {
         var engine = EngineResponse(), input = FlightInput(); input.thrust = 0.005
         XCTAssertEqual(engine.advance(toward:input,dt:Physics.step).thrust,0.005)
         input.thrust = 1
-        XCTAssertLessThan(engine.advance(toward:input,dt:Physics.step).thrust,0.03)
+        XCTAssertEqual(engine.advance(toward:input,dt:Physics.step).thrust,1)
         input.thrust = 0; XCTAssertEqual(engine.advance(toward:input,dt:Physics.step).thrust,0)
     }
     func testTerrainAndLandingPadsUseIdenticalHeights() {

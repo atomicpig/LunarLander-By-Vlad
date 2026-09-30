@@ -3,25 +3,42 @@ import FlightCore
 
 /// Small synthesized PCM loops: no bundled recordings, network, or microphone.
 final class FlightAudio {
+    // AVAudioPlayer may synchronously initialize CoreAudio. Keep every audio
+    // operation on this queue and keep one silent loop warm between bursts.
+    private let queue = DispatchQueue(label: "ro.vlad.lander.audio", qos: .utility)
     private var engine: AVAudioPlayer?
     private var contact: AVAudioPlayer?
     init() {
-        engine = try? AVAudioPlayer(data: Self.wave(duration: 1, impact: false))
-        engine?.numberOfLoops = -1; engine?.volume = 0; engine?.prepareToPlay()
-        contact = try? AVAudioPlayer(data: Self.wave(duration: 0.35, impact: true))
-        contact?.prepareToPlay()
+        queue.async { [weak self] in
+            guard let self else { return }
+            self.engine = try? AVAudioPlayer(data: Self.wave(duration: 1, impact: false))
+            self.engine?.numberOfLoops = -1
+            self.engine?.volume = 0
+            self.engine?.prepareToPlay()
+            self.engine?.play()
+            self.contact = try? AVAudioPlayer(data: Self.wave(duration: 0.35, impact: true))
+            self.contact?.prepareToPlay()
+        }
     }
     func update(world: World, input: FlightInput, running: Bool, volume: Double) {
         let level = world.enginePower.max() ?? 0
-        let audible = running && world.outcome == .flying && world.fuel > 0 && volume > 0 && (level > 0 || input.brake || input.boost)
-        guard audible else { engine?.pause(); return }
-        engine?.volume = Float(volume * (0.04 + min(1,level) * 0.13 + (input.boost ? 0.05:0)))
-        if engine?.isPlaying == false { engine?.play() }
+        let audible = running && world.outcome == .flying && world.fuel > 0 && volume > 0 && level > 0
+        let gain = audible ? Float(volume * (0.04 + min(1,level) * 0.13)) : 0
+        queue.async { [weak self] in self?.engine?.volume = gain }
     }
-    func stop() { engine?.pause(); contact?.stop() }
+    func stop() {
+        queue.async { [weak self] in
+            self?.engine?.volume = 0
+            self?.contact?.stop()
+        }
+    }
     func impact(volume: Double) {
         guard volume > 0 else { return }
-        contact?.currentTime = 0; contact?.volume = Float(volume * 0.28); contact?.play()
+        queue.async { [weak self] in
+            self?.contact?.currentTime = 0
+            self?.contact?.volume = Float(volume * 0.28)
+            self?.contact?.play()
+        }
     }
     private static func wave(duration: Double, impact: Bool) -> Data {
         let sampleRate = 22_050, count = Int(duration * Double(sampleRate))

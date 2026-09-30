@@ -14,12 +14,13 @@
 - K1–K6 dozează independent motoarele. K8 reglează precizia până la 0,1% pe pas lent.
 - Pad 1–6: impulsuri la 160% timp de 0,24 s. Pad 7: frânare de 0,55 s. Pad 8: toate motoarele la zero.
 - Inerție și gravitație lunară, combustibil consumat de fiecare propulsor, suspensie pe ambele picioare. Contact ferm acceptat până la 6 m/s vertical și 3 m/s lateral.
+- Cockpit nativ și randare AppKit/CoreGraphics; răspuns direct la comenzi, fără rampă de pornire. Relieful are cratere și fațete, nava are detalii vizibile și flăcări clare.
 - Cameră automată, zoom K7, hartă, instrumente, sunete și alternative complete prin mouse și tastatură.
 - Import automat al asocierilor AKAI din jocul anterior; padurile primesc noile funcții. Scorul nou este separat.
 
 ## Verificări și limite
 
-32 de teste automate trec, inclusiv aterizări pe toate cele trei piste prin comenzi normale, profiluri MIDI, impulsuri finite, oprire de urgență și traiectorii identice la frecvențe diferite de randare. În aplicație a fost verificată o aterizare la 2,4 m/s, acordarea scorului și trecerea în sectorul următor.
+34 de teste automate trec, inclusiv aterizări pe toate cele trei piste prin comenzi normale, profiluri MIDI, impulsuri finite, oprire de urgență și traiectorii identice la frecvențe diferite de randare. În aplicație a fost verificată o aterizare la 2,4 m/s, acordarea scorului și trecerea în sectorul următor. Testul final de 20 s, cu schimbări repetate ale modurilor și impulsuri, avansează 19,92 s de simulare. Utilizatorul a confirmat că noul cockpit este fluid și răspunde prompt.
 
 Semnătura este **ad-hoc, fără notarizare Apple**. La prima deschidere poate fi necesar **System Settings → Privacy & Security → Open Anyway**, apoi **Open**. Vezi [instrucțiunile Apple](https://support.apple.com/en-au/102445). Nu este nevoie de Terminal sau de dezactivarea protecțiilor.
 

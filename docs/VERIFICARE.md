@@ -2,10 +2,10 @@
 
 ## Teste automate
 
-`bash scripts/test.sh`: **32 teste, 0 eșecuri**, 29 septembrie 2026, Xcode complet pe Apple Silicon.
+`bash scripts/test.sh`: **34 teste, 0 eșecuri**, 30 septembrie 2026, Xcode complet pe Apple Silicon.
 
 - Inerție orizontală și cădere liberă; forță/masă/accelerație; consum și epuizare a combustibilului.
-- Comenzi fine fără prag inițial și creștere limitată a puterii mari; frânare graduală.
+- Comenzi fine și putere maximă aplicate la următorul pas fizic, fără rampă de pornire; frânare graduală.
 - Impulsuri finite, inclusiv repetarea note-on fără note-off; oprirea tuturor motoarelor și amortizării fără anularea inerției.
 - Coliziuni rapide detectate prin eșantionare pe traiectorie, lovirea carenei și limitele contactului.
 - Contact ferm cu suspensie pe fiecare pistă. Toate pistele ×1, ×3 și ×5 din sectoarele 1 și 12 sunt atinse de un pilot automat **doar în teste**, prin cele șase intrări normale și răspunsul real al motoarelor. Jocul nu conține acest pilot automat.
@@ -18,11 +18,26 @@
 
 În aplicația nativă au fost verificate lansarea, puterea continuă de 11% prin glisor, impulsul lateral, frânarea Pad 7 prin tasta 7, pauza cu eliberarea motoarelor și confirmarea reluării cu scăderea unei vieți.
 
-Aterizare efectivă pe ×1 la **2,40 m/s**, cu 206 kg combustibil și **756 puncte**. Suspensia a stabilizat nava, iar trecerea în sectorul 2 a păstrat scorul și a realimentat la 250 kg. Captura din `images/aterizare.png` provine din această sesiune.
+Aterizare efectivă pe ×1 la **2,40 m/s**, cu 206 kg combustibil și **756 puncte**. Suspensia a stabilizat nava, iar trecerea în sectorul 2 a păstrat scorul și a realimentat la 250 kg. Această aterizare a fost verificată înaintea înlocuirii randării; fizica de contact este aceeași.
 
 AKAI este conectat și detectat. Profilul folosește portul DAW pentru encodere și portul MIDI pentru clape/paduri. Reproducerea mesajelor în teste nu înlocuiește verificarea fizică a tuturor comenzilor de către utilizator.
 
-Randarea folosește noduri persistente, cameră netezită și simulare separată la 120 Hz. Automatizarea capturilor produce uneori blocaje SpriteKit („no drawables”); aceste intervale nu susțin o afirmație despre FPS-ul normal. Nu publicăm un FPS garantat.
+## Fluiditate și stabilitate
+
+Cockpitul activ folosește AppKit cu poziții fixe și CoreGraphics/CoreText. Valorile numerice nu declanșează recalcularea layoutului SwiftUI. Ceasul fizic rulează și în modul de urmărire a mouse-ului. Audio este pregătit și controlat pe un fir separat; comenzile motoarelor nu așteaptă pornirea sunetului.
+
+- Test automat: zborul avansează în `RunLoop.Mode.eventTracking`, inclusiv în timp ce sunt schimbate modurile.
+- Test automat: 600 de cadre desenate în contexte bitmap, cu puteri, impulsuri și ecrane diferite, fără suprafață Metal.
+- Benchmark în aplicația release: 20 s cu schimbări de mod și impulsuri la intervale repetate. Simularea finală: **19,92 s**. După pornire, interval mediu între redesenări **8,33 ms**, percentila 95 aproximativ **9,8–11,2 ms**; costul desenării sub **1,1 ms** la percentila 95. Un cadru de pornire a durat 164 ms în timpul rulării simultane a testelor. Acestea sunt măsurători locale, nu o garanție pentru fiecare Mac sau pentru rata de afișare a monitorului.
+- Clickurile reale pe precizie și amortizare au fost verificate în timpul zborului. Utilizatorul a confirmat: „Smooth and responsive now”.
+
+Pentru reproducerea benchmarkului, după compilare:
+
+```sh
+"dist/Lunar Lander Vlad.app/Contents/MacOS/VladLander" --performance-log --render-benchmark
+```
+
+Acest mod de diagnostic schimbă automat controalele și închide aplicația după 20 s. Nu îl folosi în timpul unui zbor pe care dorești să-l păstrezi.
 
 ## Distribuție
 
