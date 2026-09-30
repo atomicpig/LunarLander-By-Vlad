@@ -2,26 +2,26 @@
 
 ## Project Structure & Module Organization
 
-This repository contains an offline, Romanian-language macOS physics game for Apple Silicon. `Sources/FlightCore/` holds the SI-unit simulation, missions, MIDI parsing, mapping, and input state. Keep this module independent of AppKit, SpriteKit, and CoreMIDI. `Sources/VladPhysics/` contains SwiftUI screens, SpriteKit rendering, the CoreMIDI adapter, and application state. Unit tests live in `Tests/FlightCoreTests/`; application integration tests live in `Tests/GameModelTests/`. Packaging scripts are in `scripts/`; user guides and screenshots belong in `docs/`. Generated `.app`, ZIP, and DMG files stay in ignored `dist/`.
+This is an offline, Romanian-language Lunar Lander game for Apple Silicon. `Sources/FlightCore/` contains the SI-unit simulation, lunar terrain, landing contact, engine response, MIDI parsing, and controller profiles. Keep this module independent of AppKit, SpriteKit, and CoreMIDI. `Sources/VladLander/` contains SwiftUI screens, SpriteKit rendering, audio, the CoreMIDI adapter, and application state. Core tests live in `Tests/FlightCoreTests/`; application integration tests live in `Tests/LanderTests/`. Packaging scripts belong in `scripts/`, and user guides and screenshots in `docs/`. Generated bundles and archives stay in ignored `dist/`.
 
 ## Build, Test, and Development Commands
 
 - `swift build`: compile the development executable.
-- `swift run VladPhysics`: launch from source.
-- `bash scripts/test.sh`: run XCTest using full Xcode when available.
-- `bash scripts/build-app.sh`: build and ad-hoc sign the arm64 application.
-- `bash scripts/package.sh`: produce the application, ZIP, DMG, and SHA-256 checksums.
+- `swift run VladLander`: launch from source.
+- `bash scripts/test.sh`: run all XCTest suites with full Xcode.
+- `bash scripts/build-app.sh`: build and ad-hoc sign the arm64 app.
+- `bash scripts/package.sh`: generate the app, ZIP, DMG, and checksums.
 
-The deployment target is macOS 13. Use Swift 5.9 or newer. Full Xcode is required for XCTest; the distributed application needs no development tools.
+The deployment target is macOS 13; use Swift 5.9 or newer. XCTest requires full Xcode. Distributed builds require no development tools. Set `VLAD_VERSION` when packaging a new release.
 
 ## Coding Style & Naming Conventions
 
-Use four-space indentation, `UpperCamelCase` for types, and `lowerCamelCase` for members. Prefer small, explicit value types for physics and controller data. Keep UI state changes on the main thread. Write user-facing text in Romanian with diacritics; use English identifiers and technical comments. No formatter or linter is configured. Avoid external runtime dependencies and network requirements.
+Use four-space indentation, `UpperCamelCase` types, and `lowerCamelCase` members. Prefer explicit value types for physics and input. Change UI state on the main thread. Write interface text in Romanian with diacritics and identifiers in English. No formatter or linter is configured. Avoid external runtime dependencies and network requirements.
 
 ## Testing Guidelines
 
-Name tests `testBehaviorUnderCondition` and place them beside the relevant physics or MIDI suite. Verify physical invariants, fuel consumption, landing thresholds, source-independent input release, and profile serialization. All six missions must remain completable through normal flight inputs. There is no coverage percentage requirement. Run tests after behavioral changes and build the app after UI changes. Hardware detection alone does not prove every physical control works; document manual verification separately.
+Name tests `testBehaviorUnderCondition`. Verify physical invariants, fuel accounting, finite pad pulses, landing limits, swept collisions, profile migration, and input clearing. All three platforms must remain reachable through normal flight controls. Compare trajectories across frame rates; keep telemetry updates separate from simulation steps. There is no coverage percentage requirement. Run tests after behavioral changes and build after UI changes. Record physical hardware checks separately from replayed MIDI tests.
 
 ## Commit & Pull Request Guidelines
 
-The project starts without an established commit convention. Use concise imperative subjects, such as `Fix MIDI release after reconnect`. PRs should explain the behavior change, include test results, and link relevant issues. Include screenshots for visible changes and flag compatibility or packaging changes. Never commit signing certificates, credentials, build products, or personal device data.
+History uses concise imperative subjects, such as `Build Vlad physics game with granular AKAI flight controls`. Follow that style. PRs should describe behavior changes, relevant issues, and validation. Include screenshots for visible changes and flag migration or packaging changes. Never commit credentials, certificates, personal controller profiles, or build products.

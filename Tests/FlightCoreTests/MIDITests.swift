@@ -95,7 +95,7 @@ final class MIDITests: XCTestCase {
         let address = MIDIAddress(port: "MPK", channel: 0, kind: .cc, number: 14)
         old.assign(.init(action: .power, address: address, knobMode: .relativeSignMagnitude))
         let updated = old.upgraded()
-        XCTAssertEqual(updated.version, 2)
+        XCTAssertEqual(updated.version, 3)
         XCTAssertEqual(updated.binding(for: .engineMain)?.address, address)
         XCTAssertEqual(updated.binding(for: .engineMain)?.knobMode, .relativeSignMagnitude)
         XCTAssertNil(updated.binding(for: .power))

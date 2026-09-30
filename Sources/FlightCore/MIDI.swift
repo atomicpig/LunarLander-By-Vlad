@@ -79,11 +79,13 @@ public enum ControlAction: String, CaseIterable, Codable, Identifiable {
     case power, rcs, sensitivity, zoom, gravity, mass, drag, timeScale
     case pitch, modulation
     case engineMain, engineReverse, engineLeft, engineRight, engineRotateLeft, engineRotateRight, cutEngines
+    case burstMain, burstReverse, burstLeft, burstRight, burstRotateLeft, burstRotateRight, burstBrake
+    public static let bursts: [Self] = [.burstMain, .burstReverse, .burstLeft, .burstRight, .burstRotateLeft, .burstRotateRight, .burstBrake, .cutEngines]
     public static let hardwareActions: [Self] = [
         .thrust, .reverse, .left, .right, .rotateLeft, .rotateRight,
-        .boost, .brake, .stabilize, .gear, .vectors, .graphs, .pause, .cutEngines,
+        .burstMain, .burstReverse, .burstLeft, .burstRight, .burstRotateLeft, .burstRotateRight, .burstBrake, .cutEngines,
         .engineMain, .engineReverse, .engineLeft, .engineRight, .engineRotateLeft, .engineRotateRight,
-        .zoom, .timeScale, .pitch, .modulation
+        .zoom, .sensitivity, .pitch, .modulation
     ]
     public static let engines: [Self] = [.engineMain, .engineReverse, .engineLeft, .engineRight, .engineRotateLeft, .engineRotateRight]
     public var id: String { rawValue }
@@ -110,7 +112,7 @@ public enum ControlAction: String, CaseIterable, Codable, Identifiable {
         case .restart: return "Reîncepe"
         case .power: return "Limita motorului"
         case .rcs: return "Putere laterală"
-        case .sensitivity: return "Sensibilitate rotație"
+        case .sensitivity: return "Precizie potențiometre"
         case .zoom: return "Zoom"
         case .gravity: return "Gravitație"
         case .mass: return "Masă uscată"
@@ -124,7 +126,14 @@ public enum ControlAction: String, CaseIterable, Codable, Identifiable {
         case .engineRight: return "Motor spre dreapta"
         case .engineRotateLeft: return "Rotație stânga"
         case .engineRotateRight: return "Rotație dreapta"
-        case .cutEngines: return "Oprește motoarele"
+        case .cutEngines: return "Oprire motoare"
+        case .burstMain: return "Impuls principal"
+        case .burstReverse: return "Impuls invers"
+        case .burstLeft: return "Impuls stânga"
+        case .burstRight: return "Impuls dreapta"
+        case .burstRotateLeft: return "Impuls rotație stânga"
+        case .burstRotateRight: return "Impuls rotație dreapta"
+        case .burstBrake: return "Frânare scurtă"
         }
     }
     public var hardware: String {
@@ -158,7 +167,7 @@ public enum KnobMode: String, CaseIterable, Codable, Identifiable {
     }
     /// Tame the encoder's hardware acceleration: slow turns are 0.5% and even
     /// the largest single accelerated message cannot jump more than 4%.
-    public func applyEngine(_ raw: Int, to previous: Double) -> Double {
+    public func applyEngine(_ raw: Int, to previous: Double, sensitivity: Double = 1) -> Double {
         if self == .absolute { return apply(raw, to: previous) }
         let value = max(0, min(127, raw))
         let delta: Int
@@ -168,7 +177,7 @@ public enum KnobMode: String, CaseIterable, Codable, Identifiable {
         case .relativeOffset: delta = value - 64
         case .absolute: delta = 0
         }
-        let change = sqrt(Double(abs(delta))) * 0.005 * (delta < 0 ? -1 : 1)
+        let change = sqrt(Double(abs(delta))) * 0.005 * clamp(sensitivity, 0.2, 2) * (delta < 0 ? -1 : 1)
         return clamp(previous + change, 0, 1)
     }
 }
@@ -183,7 +192,7 @@ public struct ControlBinding: Codable, Equatable {
 }
 
 public struct ControllerProfile: Codable {
-    public var version = 2
+    public var version = 3
     public var bindings: [ControlBinding] = []
     public init() {}
     public mutating func assign(_ binding: ControlBinding) {
@@ -192,16 +201,28 @@ public struct ControllerProfile: Codable {
     }
     public func binding(for action: ControlAction) -> ControlBinding? { bindings.first { $0.action == action } }
     public func upgraded() -> ControllerProfile {
-        guard version == 1 else { return self }
-        let replacement: [ControlAction: ControlAction] = [
-            .power: .engineMain, .rcs: .engineReverse, .sensitivity: .engineLeft,
-            .zoom: .engineRight, .gravity: .engineRotateLeft, .mass: .engineRotateRight,
-            .drag: .zoom, .restart: .cutEngines
-        ]
-        var result = ControllerProfile()
-        result.bindings = bindings.map { original in
-            var binding = original; binding.action = replacement[original.action] ?? original.action; return binding
+        var result = self
+        if version == 1 {
+            let replacement: [ControlAction: ControlAction] = [
+                .power: .engineMain, .rcs: .engineReverse, .sensitivity: .engineLeft,
+                .zoom: .engineRight, .gravity: .engineRotateLeft, .mass: .engineRotateRight,
+                .drag: .zoom, .restart: .cutEngines
+            ]
+            result.bindings = bindings.map { old in
+                var binding = old; binding.action = replacement[old.action] ?? old.action; return binding
+            }
         }
+        if version < 3 {
+            let pads: [ControlAction: ControlAction] = [
+                .boost: .burstMain, .brake: .burstReverse, .stabilize: .burstLeft,
+                .gear: .burstRight, .vectors: .burstRotateLeft, .graphs: .burstRotateRight,
+                .pause: .burstBrake, .timeScale: .sensitivity
+            ]
+            result.bindings = result.bindings.map { old in
+                var binding = old; binding.action = pads[old.action] ?? old.action; return binding
+            }
+        }
+        result.version = 3
         return result
     }
     /// DAW preset observed on a physical MPK mini IV: channel 1, CC 24...31,
@@ -244,6 +265,7 @@ public enum RoutedInput {
 
 public struct MIDIRouter {
     public var profile: ControllerProfile
+    public var engineSensitivity = 1.0
     private var pressed: Set<MIDIAddress> = []
     private var axisValues: [ControlAction: Double] = [:]
     public init(profile: ControllerProfile = .init()) { self.profile = profile }
@@ -256,7 +278,7 @@ public struct MIDIRouter {
             let value: Double
             if action == .pitch { value = clamp(Double(event.value - 8192) / 8192, -1, 1) }
             else if action == .modulation { value = Double(event.value) / 127 }
-            else if action.isEngine { value = binding.knobMode.applyEngine(event.value, to: axisValues[action] ?? 0) }
+            else if action.isEngine { value = binding.knobMode.applyEngine(event.value, to: axisValues[action] ?? 0, sensitivity: engineSensitivity) }
             else { value = binding.knobMode.apply(event.value, to: axisValues[action] ?? 0.5) }
             axisValues[action] = value
             return .axis(action, value)

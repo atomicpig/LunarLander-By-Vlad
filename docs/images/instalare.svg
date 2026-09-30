@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350">
-<rect width="1200" height="350" rx="20" fill="#09111d"/>
-<g font-family="Arial,sans-serif" fill="#e1eaf0">
-<text x="40" y="45" font-size="20" font-weight="bold">DE LA DESCĂRCARE LA PRIMUL ZBOR</text>
-<g stroke="#263749" fill="#111e2e"><rect x="30" y="75" width="355" height="245" rx="15"/><rect x="420" y="75" width="355" height="245" rx="15"/><rect x="810" y="75" width="360" height="245" rx="15"/></g>
-<g fill="#61e6c7" font-size="18" font-weight="bold"><text x="55" y="112">01 · DESCARCĂ</text><text x="445" y="112">02 · MUTĂ APLICAȚIA</text><text x="835" y="112">03 · CONFIRMĂ</text></g>
-<g fill="#223b46"><rect x="60" y="147" width="295" height="55" rx="8"/><rect x="452" y="144" width="115" height="68" rx="10"/><rect x="630" y="144" width="115" height="68" rx="10"/><rect x="840" y="188" width="280" height="43" rx="8"/></g>
-<text x="78" y="180" font-size="16">↓ macOS-arm64.dmg</text><text x="470" y="185" font-size="16">Vlad.app</text><text x="584" y="185" font-size="25">→</text><text x="644" y="184" font-size="14">Applications</text>
-<text x="836" y="153" font-size="15">System Settings</text><text x="836" y="175" font-size="15">→ Privacy &amp; Security</text><text x="908" y="215" font-size="16" fill="#61e6c7">Open Anyway</text>
-<g font-size="14" fill="#9aabba"><text x="55" y="252">GitHub → Releases → Assets</text><text x="55" y="276">Alege aplicația, nu „Source code”.</text><text x="445" y="252">Deschide DMG-ul și trage aplicația.</text><text x="445" y="276">Pornește-o din Applications.</text><text x="835" y="268">Dacă macOS o blochează la început.</text><text x="835" y="293">Ilustrație orientativă, nu captură macOS.</text></g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
+<rect width="1100" height="260" rx="18" fill="#071019"/>
+<g font-family="Helvetica,Arial,sans-serif" fill="#e6efe8">
+<text x="32" y="40" font-size="20" font-weight="bold">LUNAR LANDER · VLAD / INSTALARE</text>
+<g fill="#101f2b" stroke="#477365"><rect x="30" y="68" width="320" height="162" rx="12"/><rect x="390" y="68" width="320" height="162" rx="12"/><rect x="750" y="68" width="320" height="162" rx="12"/></g>
+<g fill="#9eefc9" font-size="18" font-weight="bold"><text x="50" y="104">1. DESCARCĂ</text><text x="410" y="104">2. TRAGE ÎN APPLICATIONS</text><text x="770" y="104">3. DESCHIDE JOCUL</text></g>
+<g font-size="17"><text x="50" y="145">GitHub → Releases → Assets</text><text x="50" y="180">Alege fișierul .dmg pentru Mac</text><text x="410" y="145">Lunar Lander Vlad.app</text><text x="410" y="180">→ Applications / Aplicații</text><text x="770" y="145">Dacă macOS îl blochează:</text><text x="770" y="178">Privacy &amp; Security</text><text x="770" y="207">→ Open Anyway</text></g>
+<g fill="#ffb05b" font-size="26"><text x="362" y="157">→</text><text x="722" y="157">→</text></g>
 </g></svg>

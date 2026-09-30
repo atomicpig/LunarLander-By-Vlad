@@ -1,27 +1,26 @@
-# Proiectul de fizică al lui Vlad — v1.0.0
+# Lunar Lander · Vlad — v2.0.0
 
-Joc offline, în română, pentru Mac Apple Silicon (M1 sau mai nou), macOS 13+.
+Înlocuiește complet jocul anterior cu un Lunar Lander nativ, offline, în română. Adresa repository-ului și pagina ultimei versiuni rămân aceleași.
 
-## Instalare simplă
+## Descarcă și joacă
 
-Descarcă fișierul **macOS-arm64.dmg** din Assets, deschide-l și trage aplicația în **Applications**. Există și varianta ZIP. Nu ai nevoie de Terminal, Xcode sau software muzical.
+- **Mac Apple Silicon, macOS 13+**. Alege DMG-ul, deschide-l și trage Lunar Lander Vlad în Applications.
+- ZIP-ul conține aceeași aplicație, fără instalator sau dependențe.
+- [Instalare ilustrată](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/INSTALARE.md).
 
-Aplicația este semnată local, ad-hoc, fără notarizare Apple. Dacă macOS o blochează la prima deschidere: **System Settings → Privacy & Security → Open Anyway**, apoi confirmă. Nu dezactiva protecțiile macOS. [Ghid ilustrat](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/INSTALARE.md).
+## Jocul nou
 
-## Inclus
+- Relief lunar original, trei piste ×1 / ×3 / ×5, sectoare progresive, trei vieți și record local.
+- K1–K6 dozează independent motoarele. K8 reglează precizia până la 0,1% pe pas lent.
+- Pad 1–6: impulsuri la 160% timp de 0,24 s. Pad 7: frânare de 0,55 s. Pad 8: toate motoarele la zero.
+- Inerție și gravitație lunară, combustibil consumat de fiecare propulsor, suspensie pe ambele picioare. Contact ferm acceptat până la 6 m/s vertical și 3 m/s lateral.
+- Cameră automată, zoom K7, hartă, instrumente, sunete și alternative complete prin mouse și tastatură.
+- Import automat al asocierilor AKAI din jocul anterior; padurile primesc noile funcții. Scorul nou este separat.
 
-- Șase misiuni, laborator, grafice, vectori de forță și export CSV.
-- K1–K6 controlează direct și independent puterea celor șase motoare. Mișcările lente au pași de 0,5%; butoanele ± de pe ecran permit reglaje de 0,1%.
-- Motoare mai ușor de dozat, creștere progresivă la salturi mari de putere, comenzi mici aplicate în următorul pas al simulării și cameră cu tranziții line.
-- Profil automat pentru MPK mini IV, inclusiv potențiometrele relative de pe portul DAW. Asistent pentru asocieri personalizate.
-- Toate comenzile au alternative de tastatură sau mouse. X / Pad 8 oprește motoarele.
-- Aterizări mai permisive: 6 m/s vertical, 3 m/s lateral, maximum 15°, cu trenul coborât. Picioarele amortizează vizual contactul.
-- Progres și profil MIDI salvate local; fără cont sau conexiune la internet.
+## Verificări și limite
 
-## Verificare și limite
+32 de teste automate trec, inclusiv aterizări pe toate cele trei piste prin comenzi normale, profiluri MIDI, impulsuri finite, oprire de urgență și traiectorii identice la frecvențe diferite de randare. În aplicație a fost verificată o aterizare la 2,4 m/s, acordarea scorului și trecerea în sectorul următor.
 
-34 de teste automate trec: fizică, MIDI, integrarea comenzilor, consistența între frecvențe de afișare și parcurgerea tuturor misiunilor prin comenzile progresive. Toate cele opt potențiometre au fost capturate pe controllerul fizic. O aterizare la 5,10 m/s a fost verificată interactiv.
+Semnătura este **ad-hoc, fără notarizare Apple**. La prima deschidere poate fi necesar **System Settings → Privacy & Security → Open Anyway**, apoi **Open**. Vezi [instrucțiunile Apple](https://support.apple.com/en-au/102445). Nu este nevoie de Terminal sau de dezactivarea protecțiilor.
 
-Nu a fost testată separat instalarea pe un al doilea Mac fără instrumente de dezvoltare sau rularea pe macOS 13. Nu toate combinațiile fizice de clape, paduri și rotițe au fost verificate exhaustiv. Mac-urile administrate pot interzice aplicații nenotarizate. Modelul fizic este educativ și simplificat. [Detalii de verificare](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/VERIFICARE.md).
-
-Licență MIT. Sumele de control ale pachetelor sunt în `SHA256SUMS.txt`.
+Controllerul conectat este detectat, iar mesajele specifice MPK mini IV sunt acoperite de teste. Noua funcție a fiecărui pad nu a fost apăsată fizic de un operator în această verificare; asocierea poate fi verificată sau schimbată din ecranul AKAI. Alte modele/preseturi pot necesita reasociere. Compatibilitatea a fost verificată local pe Apple Silicon; nu a fost testat separat un Mac curat cu fiecare versiune macOS suportată. Detalii în [raportul de verificare](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/blob/main/docs/VERIFICARE.md).

@@ -15,7 +15,7 @@ final class MIDIService: ObservableObject {
 
     func start() {
         guard client == 0 else { return }
-        let result = MIDIClientCreateWithBlock("Vlad Physics" as CFString, &client) { [weak self] _ in
+        let result = MIDIClientCreateWithBlock("Vlad Lunar Lander" as CFString, &client) { [weak self] _ in
             DispatchQueue.main.async { self?.refresh() }
         }
         guard result == noErr else {

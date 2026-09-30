@@ -1,90 +1,67 @@
-# Proiectul de fizică al lui Vlad 🚀
+# Lunar Lander · Vlad
 
-Un joc de fizică în română, pentru **Mac cu procesor Apple M1/M2/M3/M4 sau mai nou** și **macOS 13+**. Pilotează o navă cu **AKAI MPK mini IV**, aterizează pe planete diferite și transformă zborul într-un experiment de liceu.
+Un joc nativ pentru **Mac cu procesor Apple M și macOS 13 sau mai nou**, inspirat de clasicul Lunar Lander. Zbor cu inerție, relief lunar, combustibil limitat și aterizare pe picioare. Creat pentru **AKAI MPK mini IV**: potențiometrele dozează motoarele, padurile dau impulsuri scurte și puternice. Funcționează și cu tastatura și mouse-ul, complet offline.
 
-**Funcționează offline. Nu ai nevoie de Terminal, Xcode, Python, un cont sau software muzical.** Poți juca și fără AKAI, folosind tastatura și mouse-ul.
+**[Descarcă jocul pentru Mac](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/releases/latest)** · [Instalare ilustrată](docs/INSTALARE.md)
 
-## Descarcă și pornește
+![Lunar Lander · Vlad](docs/images/lunar-lander.png)
 
-### [⬇ Descarcă aplicația pentru Mac — ultima versiune](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/releases/latest)
+## Instalare în câteva clicuri
 
-1. Din pagina de mai sus, descarcă fișierul care se termină în **`macOS-arm64.dmg`**, din secțiunea **Assets**. Nu ai nevoie de „Source code”.
-2. Deschide fișierul `.dmg` și trage **Proiectul de fizica al lui Vlad** în **Applications / Aplicații**.
-3. Deschide aplicația din Applications. Prima versiune nu este notarizată Apple. Dacă macOS o blochează, apasă Done, apoi mergi la **System Settings → Privacy & Security → Open Anyway**, confirmă și redeschide aplicația. Nu dezactiva protecțiile sistemului.
-4. Alege **Încep cu tastatura** sau **Configurează AKAI**. Apasă **Spațiu** pentru a porni prima misiune.
+1. Descarcă fișierul **`.dmg`** din pagina de mai sus, nu „Source code”.
+2. Deschide-l și trage **Lunar Lander Vlad** în **Applications / Aplicații**.
+3. Deschide jocul din Applications. Conectează AKAI prin USB, apoi apasă **Lansează**.
 
-Există și o arhivă `.zip`: dezarhivează și mută aplicația în Applications. Pe Mac-urile administrate de școală/companie, politica administratorului poate împiedica deschiderea aplicațiilor nenotarizate.
+Aplicația este semnată local, fără notarizare Apple. Dacă macOS blochează prima deschidere, mergi la **System Settings → Privacy & Security → Open Anyway**, apoi confirmă **Open**. Excepția se aplică acestei aplicații; nu este nevoie de Terminal. [Instrucțiunile Apple](https://support.apple.com/en-au/102445) explică acest pas. Pe un Mac administrat de școală poate fi necesar ajutorul administratorului.
 
-**[Ghid ilustrat de instalare](docs/INSTALARE.md)** · [Instrucțiunile oficiale Apple](https://support.apple.com/en-au/102445)
+## Cum joci
 
-![Ecranul de zbor](docs/images/zbor.jpg)
+Ai **3 vieți** și **250 kg de combustibil**. Alege una dintre cele trei piste luminoase: **×1** este largă, **×3** este mai dificilă, **×5** cere precizie. Aterizarea deschide următorul sector, adaugă până la 45 kg de combustibil și multiplică punctele. Pistele se îngustează progresiv. Recordul se salvează pe Mac.
 
-## Ce conține
+Motoarele schimbă viteza: reducerea puterii nu oprește deplasarea. Cu nava verticală, **K1 la circa 10–11%** compensează gravitația; ajustează în funcție de combustibil. Pornește cu pista ×1. Lasă inerția să te ducă spre ea, apoi frânează devreme cu Pad 7 și dozează K1.
 
-- Șase misiuni: inerție, Lună, Marte, transport greu, atmosferă terestră și aterizare cu combustibil limitat.
-- Laborator cu gravitație, masă, rezistență a aerului și viteză de simulare reglabile.
-- Vectori de viteză și forță, grafice de altitudine/viteză/energie și export CSV în unități SI.
-- Stabilizare și frânare care folosesc propulsoare și consumă combustibil.
-- Profil MIDI și progres salvate local, fără colectare de date sau conexiune la internet.
+La contact, ambele picioare trebuie să fie deasupra aceleiași piste: **≤ 6 m/s vertical, ≤ 3 m/s lateral, ≤ 15° înclinare, ≤ 0,5 rad/s rotație**. Suspensia acceptă un contact ferm. O aterizare mai lentă aduce mai multe puncte. Carena nu trebuie să lovească solul.
 
-## Conectează AKAI MPK mini IV
+![Aterizare verificată în joc](docs/images/aterizare.png)
 
-1. Conectează controllerul prin USB. Nu instala un DAW pentru acest joc.
-2. Pe AKAI, alege modul **DAW** cu butonul PLUGIN/DAW. Oprește **ARP, LATCH, NOTE REPEAT, CHORDS și SCALES** și resetează octava (OCT − și OCT + împreună).
-3. **Profilul MPK mini IV se încarcă automat.** K1–K8 folosesc portul DAW, canalul 1, CC 24–31, în mod relativ; clapele și padurile folosesc portul MIDI. Apasă Spațiu și rotește K1–K6. Mișcările lente reglează puterea cu 0,5% pe pas; accelerația mișcărilor rapide este temperată pentru a evita salturile bruște. Butoanele ± de pe ecran permit ajustări de 0,1%.
-4. Pentru un USER preset personalizat sau alte note/canale, apasă un card în ecranul **AKAI**, apoi mișcă controlul dorit. Există și **Asociază toate · 24 pași**. Selectează modul Absolut/Relativ potrivit înainte de asocierea potențiometrelor. Jocul păstrează asocierile personalizate și nu rescrie controllerul.
+## Comenzile AKAI
 
-Clapele și padurile care emit aceeași notă trebuie să folosească **canale MIDI diferite**. Un card poate fi reasociat individual; click dreapta pe el șterge asocierea. Dacă schimbi presetul sau octava, verifică din nou comenzile. Numele porturilor pot diferi între versiuni de firmware; reasociază după o astfel de schimbare.
-
-| AKAI | Acțiune | Tastatură / mouse |
+| Control | Acțiune | Alternativă |
 |---|---|---|
-| Clape C, D, E, F, G, A | Motor principal/invers, lateral stânga/dreapta, rotație stânga/dreapta | W, S, A, D, Q, E; săgeți pentru translație |
-| Pad 1 / 2, ținute | Impuls suplimentar / frânare | Tab / B |
-| Pad 3 / 4 | Stabilizare / tren de aterizare | T / G |
-| Pad 5 / 6 | Vectori / grafice | V / F |
-| Pad 7 / 8 | Pauză / oprirea tuturor motoarelor | Spațiu / X |
-| K1 / K2 | Putere motor principal / invers, independent 0–100% | Cursoare și ± în pași de 0,1% |
-| K3 / K4 | Putere motor lateral stânga / dreapta | Cursoare și ± în pași de 0,1% |
-| K5 / K6 | Putere rotație stânga / dreapta | Cursoare și ± în pași de 0,1% |
-| K7 / K8 | Zoom / viteza simulării | Cursoare în panoul drept |
-| Pitch / Mod | Rotație fină / putere la apăsare | Q/E / cursorul Mod |
+| K1 / K2 | Motor principal / invers, 0–100% | Cursoare; W / S țin motorul |
+| K3 / K4 | Propulsie spre stânga / dreapta | Cursoare; A / D |
+| K5 / K6 | Rotație stânga / dreapta | Cursoare; Q / E |
+| K7 | Zoom manual | Glisor în `?`; C comută camera automată |
+| K8 | Precizia potențiometrelor: 0,1–1% pe pas lent | Glisor în `?`; P comută fin / normal |
+| Pad 1–6 | Impuls în aceeași direcție ca K1–K6, **0,24 s la 160%**, adăugat puterii existente | Tastele 1–6 sau butoanele de jos |
+| Pad 7 | Frânare cu propulsoare, 0,55 s | 7 / B |
+| Pad 8 | Zero: oprește motoarele, impulsurile și amortizarea | 8 / X |
+| Pitch / Mod | Rotație fină / puterea clapelor | Q / E; cursoare |
+| Clape C D E F G A | Aceleași șase motoare, cât timp ții clapa | W S A D Q E |
 
-**Pilotajul principal se face din K1–K6:** fiecare potențiometru setează permanent puterea unui motor între 0 și 100%, fără să ții o clapă apăsată. Motoarele pot funcționa simultan. Clapele rămân o alternativă temporară, cât sunt apăsate. La revenirea unui potențiometru la zero, o clapă ținută poate comanda în continuare acel motor.
+**Padurile nu trebuie ținute apăsate.** Fiecare apăsare pornește un impuls finit; așteaptă efectul înainte de următoarea corecție. Frânarea consumă combustibil și nu anulează instantaneu viteza. Modulation nu afectează dials sau paduri.
 
-Motorul principal dezvoltă cel mult 18 kN, cel invers 6 kN, cele laterale 4 kN, iar propulsoarele de rotație câte 1,8 kNm. Reglajele mici se aplică imediat în simulare; creșterile mari ajung de la 0 la 100% în 0,4 s. Reducerile de putere sunt imediate. **Mod afectează numai clapele**, nu motoarele comandate din potențiometre. Indicatorul „Plutire” arată puterea K1 necesară pentru a compensa greutatea navei verticale; sub acest prag nava încă accelerează în jos.
+**Spațiu**: pauză / continuă. **Esc**: pauză. **R**: reia cu confirmare, costă o viață. **T**: amortizează rotația folosind combustibil, păstrând unghiul ales. Pentru ecran complet folosește butonul verde al ferestrei.
 
-**X / Pad 8 oprește toate motoarele și stabilizarea**, fără să anuleze viteza navei. R reia încercarea cu confirmare. Pauza, pierderea focusului sau deconectarea MIDI aduc puterile la zero. După pornire, rotește fiecare potențiometru absolut la zero pentru a-l rearma, apoi crește puterea; potențiometrele relative pornesc incremental de la zero. Această protecție evită pornirea bruscă a unui motor la valoarea rămasă pe controller.
+### Dacă un potențiometru nu răspunde
 
-Gravitația, masa și rezistența aerului se reglează în panoul laboratorului; K1–K6 rămân disponibile pentru motoare în orice misiune. Profilul automat pentru portul DAW a fost verificat prin capturarea mesajelor tuturor celor opt potențiometre fizice. Asocierile făcute în prima variantă a aplicației sunt migrate automat la noua schemă.
+Deschide **AKAI**. Folosește modul DAW pe MPK mini IV; dezactivează ARP, LATCH, NOTE REPEAT, CHORDS și SCALES. Profilul implicit folosește K1–K8 de pe portul DAW, iar clapele și padurile de pe portul MIDI. Comanda primită se evidențiază în ecran.
 
-## Fizica și măsurătorile
+Poți reasocia: alege tipul encoderului, apasă pe funcție și mișcă acel control. Pentru MPK mini IV în modul DAW, folosește **Relativ · +1 / 127**. O asociere include portul, canalul și tipul mesajului. Profilul se salvează automat. La pauză, deconectare sau pierderea focusului, motoarele sunt aduse la zero. Potențiometrele absolute trebuie readuse la zero înainte de reluare.
 
-Model 2D cu pas fix de **1/120 s**, unități SI, gravitație uniformă locală și corp rigid simplificat. `ΣF = ma`, `p = mv`, `Ec = ½mv²`, `Ep = mgh`, `F_aer = −c|v|v`. Masa scade prin consumul de combustibil; stabilizarea aplică un cuplu, iar frânarea aplică o forță opusă vitezei. Motoarele opuse consumă combustibil chiar când forțele lor se anulează.
+## Ce înlocuiește
 
-Pentru aterizare: întreaga amprentă a navei pe platformă, tren coborât, `|vx| ≤ 3 m/s`, `|vy| ≤ 6 m/s`, înclinare `≤ 15°`, viteză unghiulară `≤ 0,5 rad/s`. Trenul amortizează vizual contactele mai ferme; aterizarea pe lateral sau cu trenul retras rămâne o prăbușire.
-
-Energia mecanică se conservă aproximativ numai fără propulsie, rezistență și variație de masă. Graficele nu reprezintă energia chimică a combustibilului sau energia gazelor evacuate. Nu este un simulator orbital sau aerodinamic profesional.
-
-Datele sunt eșantionate la aproximativ 10 Hz. Graficele arată ultimele 30 s; exportul păstrează cel mult aproximativ 30 de minute. Schimbarea masei, gravitației sau rezistenței începe un experiment nou, în pauză. CSV folosește punct zecimal și virgulă între coloane și poate fi importat în Numbers sau Excel.
+Versiunea 2.0 înlocuiește complet jocul anterior „Proiectul de fizică al lui Vlad”. Adresa repository-ului și pagina de descărcare rămân aceleași. Aplicația are un nume nou; poți elimina vechea aplicație din Applications. Asocierile AKAI salvate se importă automat, cu noile funcții ale padurilor. Recordul începe separat. Misiunile educative și laboratorul vechi nu mai fac parte din joc.
 
 ## Pentru dezvoltatori
 
-Necesită instrumente Swift 5.9+; testele XCTest necesită Xcode complet. Utilizatorii aplicației precompilate nu au nevoie de acestea.
-
-```bash
-swift build                 # compilare pentru dezvoltare
-swift run VladPhysics       # lansare din surse
-bash scripts/test.sh        # teste de fizică, misiuni și MIDI
-bash scripts/build-app.sh   # aplicație arm64 semnată ad-hoc în dist/
-bash scripts/package.sh     # aplicație, ZIP, DMG și sume SHA-256
+```sh
+swift build
+swift run VladLander
+bash scripts/test.sh
+bash scripts/package.sh
 ```
 
-`Sources/FlightCore` conține fizica și logica MIDI independentă de interfață. `Sources/VladPhysics` conține aplicația nativă. `Tests/FlightCoreTests` verifică modelul și comenzile; `Tests/GameModelTests` verifică legătura dintre MIDI, interfață și simulare. CI verifică testele și compilarea pe macOS. Nu există dependențe externe Swift.
+Swift 5.9+, Swift Package Manager, macOS 13+. Testele necesită Xcode complet. Fizica din `Sources/FlightCore/` folosește unități SI și pas fix de 1/120 s, separat de UI și de CoreMIDI. Nu există dependențe externe. `VLAD_VERSION=2.0.1 bash scripts/package.sh` schimbă versiunea arhivelor. Vezi [AGENTS.md](AGENTS.md), [verificările](docs/VERIFICARE.md) și [notele versiunii](docs/RELEASE_NOTES.md).
 
-Pentru altă versiune: `VLAD_VERSION=1.0.1 bash scripts/package.sh`. Fișierele de instalare sunt publicate în **Releases**, nu comise în Git.
-
-## Verificare și limite ale primei versiuni
-
-Vezi [notele de verificare](docs/VERIFICARE.md) pentru ce a fost testat automat, ce a fost verificat pe Mac-ul de dezvoltare și ce necesită testarea fizică a controllerului sau un al doilea Mac. Compatibilitatea cu alte modele MPK este posibilă prin asociere manuală, dar nu este certificată.
-
-Licență [MIT](LICENSE). AKAI și Apple sunt mărci ale proprietarilor lor; proiectul este independent.
+Grafică vectorială și sunete originale. Proiect independent, fără afiliere cu Atari sau AKAI. Cod distribuit sub [licența MIT](LICENSE).

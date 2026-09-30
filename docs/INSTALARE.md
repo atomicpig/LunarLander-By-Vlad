@@ -1,37 +1,48 @@
-# Instalare în câteva minute
+# Instalare — Lunar Lander · Vlad
 
-![Cei trei pași de instalare](images/instalare.svg)
+Ai nevoie de un **Mac cu procesor Apple M1 sau mai nou** și **macOS 13 Ventura sau mai nou**. Verifică în meniul Apple → About This Mac / Despre acest Mac. Nu ai nevoie de Xcode, Terminal, cont sau conexiune la internet după descărcare. Controllerul este opțional.
+
+![Pașii instalării](images/instalare.svg)
 
 ## 1. Descarcă aplicația
 
-Deschide [ultima versiune](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/releases/latest). În **Assets**, apasă fișierul **macOS-arm64.dmg**. Așteaptă terminarea descărcării. „Source code” conține codul pentru programatori, nu aplicația gata de pornit.
+Deschide **[pagina ultimei versiuni](https://github.com/atomicpig/proiectul-de-fizica-al-lui-vlad/releases/latest)**. În lista **Assets**, alege `Lunar-Lander-Vlad-2.0.0-macOS-arm64.dmg`. Fișierele „Source code” sunt pentru dezvoltatori.
 
-## 2. Mută în Applications
+Alternativ, descarcă ZIP-ul, deschide-l și mută aplicația rezultată în Applications.
 
-Deschide DMG-ul din Downloads. Trage **Proiectul de fizica al lui Vlad.app** peste **Applications**. Apoi deschide aplicația din Applications. Poți ejecta discul „Fizica lui Vlad”. Alternativ, dezarhivează ZIP-ul și mută aplicația în Applications.
+## 2. Mută jocul în Applications
 
-## 3. Confirmă prima pornire
+Deschide fișierul DMG din Downloads / Descărcări. Trage **Lunar Lander Vlad.app** peste scurtătura **Applications** din fereastră. Închide fereastra și ejectează volumul din Finder. Deschide jocul din **Applications / Aplicații**, nu din imaginea DMG.
 
-Această versiune gratuită nu este notarizată Apple. Dacă apare mesajul că Apple nu poate verifica dezvoltatorul, închide mesajul cu **Done**, apoi:
+## 3. Prima deschidere
 
-** → System Settings → Privacy & Security → Open Anyway → confirmă aplicația → Open**.
+Această versiune are semnătură locală ad-hoc și nu este notarizată de Apple. Dacă apare avertismentul că dezvoltatorul nu poate fi verificat:
 
-Butonul apare după prima încercare de deschidere. Poate fi necesară parola Mac-ului. Această confirmare se aplică aplicației; nu este nevoie să modifici protecțiile generale sau să rulezi comenzi în Terminal. [Ghidul Apple](https://support.apple.com/en-au/102445) descrie ecranele sistemului; denumirile pot varia în funcție de limba macOS.
+1. Închide avertismentul fără să alegi Move to Trash.
+2. Deschide **System Settings / Configurări sistem → Privacy & Security / Intimitate și securitate**.
+3. Derulează la mesajul despre Lunar Lander Vlad și apasă **Open Anyway / Deschide oricum**.
+4. Confirmă **Open / Deschide** și autentifică-te dacă macOS cere.
 
-## 4. Primul zbor
+Urmează acești pași numai pentru copia descărcată din repository-ul de mai sus. [Ghidul oficial Apple](https://support.apple.com/en-au/102445) descrie excepția pentru o singură aplicație. Nu trebuie dezactivate protecțiile Mac-ului. Dacă apare „damaged” sau „will damage your computer”, descarcă din nou arhiva oficială; nu încerca să ocolești acel avertisment. Un Mac administrat poate necesita intervenția administratorului.
 
-Alege **Încep cu tastatura**, apoi **Începe zborul** sau Spațiu. În prima misiune nu există gravitație: S dă un impuls în jos, W frânează coborârea. B frânează mișcarea folosind combustibil.
+## 4. Conectează AKAI și pilotează
 
-K1–K6 controlează direct cele șase motoare. Puterea se menține până revii la zero. X / Pad 8 oprește toate motoarele. Pentru reglaj fin cu mouse-ul, folosește cursoarele și butoanele ± de 0,1%.
+Conectează MPK mini IV prin USB. Deschide **AKAI** în joc și verifică dacă potențiometrele se evidențiază când le rotești. Folosește modul DAW și oprește ARP, LATCH, NOTE REPEAT, CHORDS și SCALES. Profilul poate fi reasociat din aceeași fereastră; nu sunt necesare drivere în joc.
 
-Pentru AKAI: conectează USB și selectează modul **DAW** pe controller. Profilul se încarcă automat. Apasă Spațiu și rotește K1–K6; nu trebuie instalat software muzical. Dacă folosești un preset personalizat, **Configurează AKAI** permite reasocierea fiecărui control.
+- **K1–K6:** motoare dozate fin; puterea rămâne activă până o reduci.
+- **Pad 1–6:** impulsuri scurte și puternice în aceleași direcții.
+- **Pad 7:** frână; **Pad 8:** toate motoarele la zero.
+- **K7:** zoom; **K8:** precizia reglajelor.
+- **Spațiu:** pauză / continuă. **?** deschide toate instrucțiunile.
 
-![Ecranul de zbor](images/zbor.jpg)
+Pentru primul zbor, urmărește pista largă ×1. Nava pornește în deplasare spre dreapta. K1 la aproximativ 10–11% compensează gravitația; folosește Pad 7 pentru a încetini înainte de contact. Redu treptat puterea pentru coborâre. Aterizează pe picioare, la maximum 6 m/s vertical și 3 m/s lateral.
 
-## Dacă ceva nu funcționează
+![Ecranul jocului](images/lunar-lander.png)
 
-- **Nu apare AKAI:** verifică alimentarea, cablul USB și hub-ul, apoi apasă Reîmprospătează în ecranul Controller. Jocul poate fi folosit cu tastatura.
-- **O clapă declanșează altceva:** verifică presetul, octava și asocierile. Oprește ARP, LATCH, NOTE REPEAT, CHORDS și SCALES.
-- **Motorul pare inactiv:** pornește zborul, verifică combustibilul și cursorul Mod. Rotița Mod la zero oprește propulsia comandată prin clape.
-- **Mac cu Intel:** versiunea descărcabilă este numai pentru procesoare Apple M.
-- **Mac administrat:** dacă Open Anyway nu este disponibil din cauza politicii școlii/companiei, contactează administratorul.
+Fără controller: W/S/A/D/Q/E țin motoarele, 1–8 reproduc padurile, iar cele șase cursoare de jos oferă putere continuă. Pierderea focusului pune automat jocul pe pauză și oprește motoarele.
+
+![Asocierea comenzilor AKAI](images/akai.png)
+
+## Actualizare de la jocul anterior
+
+Acesta este un joc nou. Vechea aplicație „Proiectul de fizică al lui Vlad” poate fi mutată în Coș. Asocierile AKAI se importă automat; padurile au acum funcții de impuls. Scorurile vechi nu sunt compatibile. Pentru actualizările viitoare închide jocul înainte să înlocuiești aplicația din Applications.
